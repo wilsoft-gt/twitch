@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/script.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <title>twitch api</title>
+</head>
+
+<body onload="getTwitch()" style="background-image: url(images/main_bg.png);" class="h-100">
+    <!-- este es el menu principal -->
+    <!-- container principal de nuestra app -->
+    <div class="container h-100" >
+        <div class="row h-100 justify-content-center">
+            <div class="col-12 align-self-center">
+                <!-- nuestra card principal que tiene todo el contenido -->
+                <div class="card" style="background-color: rgba(239, 230, 255, 0.95)">
+                    <!-- cabecera de la card en donde aparece el titulo y es un poco mas oscuro que el body -->
+                    <!-- la definimos como una row para poder agregar mas diviciones en columnas -->
+                    <div class="card-header row">
+                            <!-- esta columna es la primera parte y es el titulo de la app -->
+                            <div class="col-8" style="color: #6441A4 ">
+                                <h1><i class="fab fa-twitch"></i> Twitch</h1>
+                            </div>
+                            <!-- esta es la segunda columan del header donde aparece la opcion de busqueda personalizada -->
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <input id="customtext" type="text" class="form-control" placeholder="Search different channel" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button onclick="customsearch()" class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#modalmoreinfo"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                    </div>
+
+                    <!-- este es el body de nuestra card, en donde aparecerán las cards generadas dinamicamente -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a onclick="testmethood.all()" class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">All</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Online</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Offline</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><div class="card-group" id="homew"></div></div>
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><div class="card-deck" id="profilew"></div></div>
+                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><div class="card-deck" id="contactw"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- esto sirve para mantener las cards alineadas orizontalmente y juntas -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- este es el modal que muestra mas info -->
+    <div class="modal fade" id="modalmoreinfo" tabindex="-1" role="dialog" aria-labelledby="modalmorenfoTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <!-- el modalavatar es un agregado para mostrar el icono del canal en el modal a la par del nombre del canal -->
+                <img id="modalavatar" style="height: 25px; width: 25px;">&nbsp;&nbsp; <!-- solo da dos espacios entre el icono del canal y el titulo -->
+                <!-- titulo del modal -->
+                <h5 class="modal-title" id="modalmoreinfoTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalmoreinfobody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a id="gotochannel" target="_blank" class="btn btn-primary" href="#" role="button">Go to channel!</a>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
