@@ -9,6 +9,7 @@ function modalshowinfo(e) {
         $.getJSON("https://api.twitch.tv/kraken/streams/" + json.name +  "?client_id=39r473fxxkvfbns0nbddmvmvi2457v", function (jstream) {       
             /* si no esta transmitiendo abrirla el modal solo con el nombre del canal e informacion adicional */
             if (jstream.stream === null) {
+                $("#gotochannel").removeClass("d-none");
                 $("#modalavatar").removeClass("d-none");
                 $("#modalavatar").addClass("d-block");
                 $("#modalavatar").attr("src", json.logo);
@@ -19,6 +20,7 @@ function modalshowinfo(e) {
             
             /* de lo contrario va a agregar la misma informacion que lo anterior pero agregará una miniatura de lo que se está transmitiendo */
             } else {
+                $("#gotochannel").removeClass("d-none");
                 $("#modalavatar").removeClass("d-none");
                 $("#modalavatar").addClass("d-block");
                 $("#modalavatar").attr("src", json.logo);
