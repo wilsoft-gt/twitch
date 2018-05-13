@@ -1,4 +1,4 @@
-var listanombres = ["ESL_SC2", "OgamingSC2", "freecodecamp" , "storbeck", "RobotCaleb", "food", "radioelsembrador", "buzzr"];
+var listanombres = ["ESL_SC2", "OgamingSC2", "freecodecamp" , "storbeck", "RobotCaleb", "food", "choppertown", "buzzr"];
 
 /* esta funcion sirve para desplegar el modal con mas informacion del canal seleccionado 
    la variable "e" toma el nombre del canal que nos va a servir para enviar la informacion al modal
