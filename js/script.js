@@ -53,13 +53,13 @@ function getTwitch() {
 
                 /* si no estan transmitiendo nada entonces agregamos el icono rojo mostrando offline en el card-footer */
                 if (jstream.stream === null) {
-                    $("#contactw").prepend('<div class="card text-center" id="' + json.name +'"><a data-toggle="modal" href="#modalmoreinfo" onclick="modalshowinfo(' + "'" + json.name + "'" + ');"><img class="card-img-top" id="' + json.name + 'logo" src="' + json.logo+ '" alt="' + json.name + 'logo"><div class="card-body"><h5>' +json.display_name + '</h5></div></a></div>');
+                    $("#contactw").prepend('<div class="card text-center h-100" id="' + json.name +'"><a data-toggle="modal" href="#modalmoreinfo" onclick="modalshowinfo(' + "'" + json.name + "'" + ');"><img class="card-img-top" id="' + json.name + 'logo" src="' + json.logo+ '" alt="' + json.name + 'logo"><div class="card-body"><h5>' +json.display_name + '</h5></div></a></div>');
                     $("#" + json.name + "status").append('<div style="height: 15px; width: 15px; border: black 1px solid; border-radius: 50%; background-color: red; margin: auto;"></div><small class="text-muted">Offline</small>');              
                 } 
     
                 /* de lo contrario mostramos el icono verde mostrando online en el card-footer */               
                 else {
-                    $("#profilew").prepend('<div class="card text-center" id="' + json.name +'"><a data-toggle="modal" href="#modalmoreinfo" onclick="modalshowinfo(' + "'" + json.name + "'" + ');"><img class="card-img-top" id="' + json.name + 'logo" src="' + json.logo+ '" alt="' + json.name + 'logo"><div class="card-body"><h5>' +json.display_name + '</h5></a></div>');
+                    $("#profilew").prepend('<div class="card text-center h-100" id="' + json.name +'"><a data-toggle="modal" href="#modalmoreinfo" onclick="modalshowinfo(' + "'" + json.name + "'" + ');"><img class="card-img-top" id="' + json.name + 'logo" src="' + json.logo+ '" alt="' + json.name + 'logo"><div class="card-body"><h5>' +json.display_name + '</h5></a></div>');
                     $("#" + json.name + "status").append('<div style="height: 15px; width: 15px; border: black 1px solid; border-radius: 50%; background-color: green; margin: auto;"></div><small class="text-muted">Online</small>');      
                 }
             });
